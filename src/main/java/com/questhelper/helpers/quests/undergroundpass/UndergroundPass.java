@@ -417,6 +417,9 @@ public class UndergroundPass extends BasicQuestHelper
 		plankRock3 = new ObjectStep(this, ObjectID.FLAT_ROCK, new WorldPoint(2416, 9689, 0), "Use a plank on the flat rock to cross it.", plankHighlight);
 		plankRock3.addIcon(ItemID.PLANK);
 		collectOrb1.addSubSteps(plankRock1, plankRock2, plankRock3);
+		plankRock3.addIcon(ItemID.PLANK);
+		plankRock2.addIcon(ItemID.PLANK);
+		plankRock1.addIcon(ItemID.PLANK);
 
 		collectOrb2 = new ObjectStep(this, OBJECTID_ORB_OF_LIGHT2, new WorldPoint(2385, 9685, 0), "Take the second orb of light north west of the well.");
 		collectOrb3 = new ObjectStep(this, OBJECTID_ORB_OF_LIGHT3, new WorldPoint(2386, 9677, 0), "Take the third orb of light west of the well. Remember to use a plank on the flat rocks to cross them.");
