@@ -83,7 +83,8 @@ public class UndergroundPass extends BasicQuestHelper
 	Requirement inCastleFloor2, inWestArdougne, isBeforeRockslide1, isBeforeRockslide2, isBeforeRockslide3,
 		isBeforeBridge, isNorthEastOfBridge, isBeforeThePit, isAfterThePit, isBeforeTheGrid, isAtTheGrid, isAfterTheGrid, isBeforeTrap1,
 		isBeforeTrap2, isBeforeTrap3, isBeforeTrap4, isBeforeTrap5, isInWellArea, isBeforePlank2, isBeforePlank3,
-		isAtOrb1, haveOrb1, haveOrb2, haveOrb3, haveOrb4, isInsideCell, isBeforeLedge, isAfterMaze,
+		isBeforePlank5, isBeforePlank6, isBeforePlank7, isBeforePlank8, isAtOrb1,
+		isAtOrb3, haveOrb1, haveOrb2, haveOrb3, haveOrb4, isInsideCell, isBeforeLedge, isAfterMaze,
 		isInUnicornArea, isInUnicornArea2, haveUnicornHorn, isInKnightsArea, haveBadgeJerro,
 		haveBadgeCarl, haveBadgeHarry, isBeforeIbansDoor, isInDwarfCavern, haveKlanksGauntlets, isInFinalArea,
 		dollImbued, pouredBrew, dollAshed, kalragKilled, doveSmeared, clothInBag, isInFallArea, isInUndergroundSection2,
@@ -94,7 +95,8 @@ public class UndergroundPass extends BasicQuestHelper
 		enterTheDungeon, climbOverRockslide1, climbOverRockslide2, climbOverRockslide3, talkToKoftikAtBridge,
 		useClothOnArrow, lightArrow, walkNorthEastOfBridge, shootBridgeRope, collectPlank, searchBagForCloth,
 		crossThePit, climbOverRockslide4, climbOverRockslide5, crossTheGrid, pullLeverAfterGrid, passTrap1,
-		passTrap2, passTrap3, passTrap4, passTrap5, plankRock1, plankRock2, plankRock3, collectOrb1, collectOrb2,
+		passTrap2, passTrap3, passTrap4, passTrap5, plankRock1, plankRock2, plankRock3,
+		plankRock4, plankRock5, plankRock6, plankRock7, plankRock8, collectOrb1, collectOrb2,
 		collectOrb3, collectOrb4, orbsToFurnace, climbDownWell, pickCellLock, digMud, crossLedge, navigateMaze,
 		goThroughPipe, searchUnicornCage, useRailingOnBoulder, searchUnicornCageAgain, leaveUnicornArea,
 		walkToKnights, killJerro, killCarl, killHarry, useBadgeJerroOnWell, useBadgeHarryOnWell, useBadgeCarlOnWell,
@@ -108,6 +110,7 @@ public class UndergroundPass extends BasicQuestHelper
 	Zone castleFloor2, westArdougne, beforeRockslide1, beforeRockslide2, beforeRockslide3, beforeBridge,
 		northEastOfBridge, westOfBridge, beforeThePit, afterThePit, beforeTheGrid, atTheGrid, afterTheGrid,
 		beforeTrap1, beforeTrap2, beforeTrap3, beforeTrap4, beforeTrap5, wellArea, beforePlank2, beforePlank3,
+		beforePlank5, beforePlank6, beforePlank7, beforePlank8, atOrb3,
 		atOrb1, insideCell, beforeLedge, afterMaze, afterMazeShortcut, inUnicornArea, inUnicornArea2, inKnightsArea1,
 		inKnightsArea2, inKnightsArea3, beforeIbansDoor, inDwarfCavern, inFinalArea, inTemple, inFallArea,
 		inUndergroundSection2P1, inUndergroundSection2P2, inUndergroundSection2P3, inUndergroundSection2P4,
@@ -241,6 +244,11 @@ public class UndergroundPass extends BasicQuestHelper
 		beforePlank2 = new Zone(new WorldPoint(2416, 9682, 0), new WorldPoint(2420, 9684, 0));
 		beforePlank3 = new Zone(new WorldPoint(2414, 9686, 0), new WorldPoint(2420, 9688, 0));
 		atOrb1 = new Zone(new WorldPoint(2412, 9690, 0), new WorldPoint(2422, 9698, 0));
+		beforePlank5 = new Zone(new WorldPoint(2407, 9672, 0), new WorldPoint(2405, 9678, 0));
+		beforePlank6 = new Zone(new WorldPoint(2403, 9673, 0), new WorldPoint(2402, 9677, 0));
+		beforePlank7 = new Zone(new WorldPoint(2400, 9674, 0), new WorldPoint(2397, 9679, 0));
+		beforePlank8 = new Zone(new WorldPoint(2395, 9679, 0), new WorldPoint(2394, 9674, 0));
+		atOrb3 = new Zone(new WorldPoint(2392, 9672, 0), new WorldPoint(2384, 9679, 0));
 
 		insideCell = new Zone(new WorldPoint(2392, 9650, 0), new WorldPoint(2394, 9654, 0));
 		beforeLedge = new Zone(new WorldPoint(2374, 9639, 0), new WorldPoint(2395, 9647, 0));
@@ -300,6 +308,10 @@ public class UndergroundPass extends BasicQuestHelper
 		isBeforePlank2 = new ZoneRequirement(beforePlank2);
 		isBeforePlank3 = new ZoneRequirement(beforePlank3);
 		isAtOrb1 = new ZoneRequirement(atOrb1);
+		isBeforePlank5 = new ZoneRequirement(beforePlank5);
+		isBeforePlank6 = new ZoneRequirement(beforePlank6);
+		isBeforePlank7 = new ZoneRequirement(beforePlank7);
+		isBeforePlank8 = new ZoneRequirement(beforePlank8);
 		isInsideCell = new ZoneRequirement(insideCell);
 		isBeforeLedge = new ZoneRequirement(beforeLedge);
 		isInMaze = new ZoneRequirement(inMaze1, inMaze2);
@@ -417,12 +429,22 @@ public class UndergroundPass extends BasicQuestHelper
 		plankRock3 = new ObjectStep(this, ObjectID.FLAT_ROCK, new WorldPoint(2416, 9689, 0), "Use a plank on the flat rock to cross it.", plankHighlight);
 		plankRock3.addIcon(ItemID.PLANK);
 		collectOrb1.addSubSteps(plankRock1, plankRock2, plankRock3);
-		plankRock3.addIcon(ItemID.PLANK);
-		plankRock2.addIcon(ItemID.PLANK);
-		plankRock1.addIcon(ItemID.PLANK);
 
 		collectOrb2 = new ObjectStep(this, OBJECTID_ORB_OF_LIGHT2, new WorldPoint(2385, 9685, 0), "Take the second orb of light north west of the well.");
+
 		collectOrb3 = new ObjectStep(this, OBJECTID_ORB_OF_LIGHT3, new WorldPoint(2386, 9677, 0), "Take the third orb of light west of the well. Remember to use a plank on the flat rocks to cross them.");
+		plankRock4 = new ObjectStep(this, ObjectID.FLAT_ROCK, new WorldPoint(2408, 9674, 0), "Use a plank on the flat rock to cross it.", plankHighlight);
+		plankRock4.addIcon(ItemID.PLANK);
+		plankRock5 = new ObjectStep(this, ObjectID.FLAT_ROCK, new WorldPoint(2404, 9675, 0), "Use a plank on the flat rock to cross it.", plankHighlight);
+		plankRock5.addIcon(ItemID.PLANK);
+		plankRock6 = new ObjectStep(this, ObjectID.FLAT_ROCK, new WorldPoint(2401, 9675, 0), "Use a plank on the flat rock to cross it.", plankHighlight);
+		plankRock6.addIcon(ItemID.PLANK);
+		plankRock7 = new ObjectStep(this, ObjectID.FLAT_ROCK, new WorldPoint(2396, 9677, 0), "Use a plank on the flat rock to cross it.", plankHighlight);
+		plankRock7.addIcon(ItemID.PLANK);
+		plankRock8 = new ObjectStep(this, ObjectID.FLAT_ROCK, new WorldPoint(2393, 9676, 0), "Use a plank on the flat rock to cross it.", plankHighlight);
+		plankRock8.addIcon(ItemID.PLANK);
+		collectOrb3.addSubSteps(plankRock4, plankRock5, plankRock6, plankRock7, plankRock8);
+
 		collectOrb4 = new ObjectStep(this, ObjectID.FLAT_ROCK_3339, new WorldPoint(2382, 9668, 0), "Search the flat rock to remove the trap and take the fourth orb to the south west of the well.");
 		collectOrb4.addDialogStep("Yes, I'll give it a go.");
 		orbsToFurnace = new ObjectStep(this, ObjectID.FURNACE_3294, new WorldPoint(2455, 9683, 0), "Return to the furnace to the east, and use the orbs on it.");
@@ -631,6 +653,20 @@ public class UndergroundPass extends BasicQuestHelper
 		theUndergroundPass.addStep(isBeforePlank2, plankRock2);
 		theUndergroundPass.addStep(isBeforePlank3, plankRock3);
 		theUndergroundPass.addStep(isAtOrb1, collectOrb1);
+		theUndergroundPass.addStep(new Conditions(haveOrb1, isAtOrb1), plankRock3);
+		theUndergroundPass.addStep(new Conditions(haveOrb1, isBeforePlank3), plankRock2);
+		theUndergroundPass.addStep(new Conditions(haveOrb1, isBeforePlank2), plankRock1);
+		theUndergroundPass.addStep(isInWellArea, plankRock4);
+		theUndergroundPass.addStep(isBeforePlank5, plankRock5);
+		theUndergroundPass.addStep(isBeforePlank6, plankRock6);
+		theUndergroundPass.addStep(isBeforePlank7, plankRock7);
+		theUndergroundPass.addStep(isBeforePlank8, plankRock8);
+		theUndergroundPass.addStep(isAtOrb3, collectOrb3);
+		theUndergroundPass.addStep(new Conditions(haveOrb3, isAtOrb3), plankRock8);
+		theUndergroundPass.addStep(new Conditions(haveOrb3, isBeforePlank8), plankRock7);
+		theUndergroundPass.addStep(new Conditions(haveOrb3, isBeforePlank7), plankRock6);
+		theUndergroundPass.addStep(new Conditions(haveOrb3, isBeforePlank6), plankRock5);
+		theUndergroundPass.addStep(new Conditions(haveOrb3, isBeforePlank5), plankRock4);
 
 		theUndergroundPass.addStep(isBeforeTrap1, passTrap1);
 		theUndergroundPass.addStep(isBeforeTrap2, passTrap2);
